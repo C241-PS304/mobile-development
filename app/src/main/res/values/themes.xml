@@ -6,4 +6,13 @@
     </style>
 
     <style name="Theme.FaceTrack" parent="Base.Theme.FaceTrack" />
+
+    <style name="Theme.FaceTrack.PurpleStatusBar" parent="Base.Theme.FaceTrack">
+        <item name="android:statusBarColor">@color/primary_purple</item>
+    </style>
+
+    <style name="Theme.FaceTrack.WhiteStatusBar" parent="Base.Theme.FaceTrack">
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>
