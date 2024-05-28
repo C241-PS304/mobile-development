@@ -1,4 +1,4 @@
-package com.bangkit2024.facetrack.ui.splash
+package com.bangkit2024.facetrack.ui.activities.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.bangkit2024.facetrack.R
 import com.bangkit2024.facetrack.databinding.ActivitySplashBinding
-import com.bangkit2024.facetrack.ui.intro.IntroActivity
+import com.bangkit2024.facetrack.ui.activities.intro.IntroActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

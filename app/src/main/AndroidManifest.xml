@@ -13,22 +13,24 @@
         android:theme="@style/Theme.FaceTrack"
         tools:targetApi="31">
         <activity
-            android:name=".ui.intro.IntroActivity"
+            android:name=".ui.activities.main.MainActivity"
+            android:exported="false"
             android:theme="@style/Theme.FaceTrack.WhiteStatusBar"
-            android:exported="false" />
+            android:label="@string/title_activity_main" />
         <activity
-            android:name=".ui.splash.SplashActivity"
-            android:theme="@style/Theme.FaceTrack.PurpleStatusBar"
-            android:exported="true">
+            android:name=".ui.activities.intro.IntroActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FaceTrack.WhiteStatusBar" />
+        <activity
+            android:name=".ui.activities.splash.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.FaceTrack.PurpleStatusBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.home.HomeActivity"
-            android:exported="true" />
     </application>
 
 </manifest>
