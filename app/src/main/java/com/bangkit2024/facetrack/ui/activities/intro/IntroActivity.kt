@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit2024.facetrack.databinding.ActivityIntroBinding
-import com.bangkit2024.facetrack.ui.activities.main.MainActivity
+import com.bangkit2024.facetrack.ui.activities.login.LoginActivity
 
 class IntroActivity : AppCompatActivity() {
 
@@ -16,7 +16,7 @@ class IntroActivity : AppCompatActivity() {
         setContentView(introBinding.root)
 
         introBinding.btnNextIntro3.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
             // Intent to LoginActivity
             //
