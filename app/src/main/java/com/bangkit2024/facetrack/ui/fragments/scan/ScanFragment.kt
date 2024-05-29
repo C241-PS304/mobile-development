@@ -19,17 +19,14 @@ class ScanFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val scanViewModel =
-            ViewModelProvider(this)[ScanViewModel::class.java]
-
         _binding = FragmentScanBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val textView: TextView = binding.textScan
-        scanViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Code here
     }
 
     override fun onDestroyView() {

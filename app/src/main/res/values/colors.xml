@@ -7,5 +7,7 @@
     <color name="black_subtitle">#6F6F6F</color>
     <color name="grey_bold">#E6E6E6</color>
     <color name="grey_light">#DADADA</color>"
+    <color name="green_bold">#34A353</color>
+    <color name="green_light">#3434A353</color>
 
 </resources>

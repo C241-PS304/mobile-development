@@ -29,6 +29,7 @@
             android:exported="false"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.FaceTrack.WhiteStatusBar" />
+
         <activity
             android:name=".ui.activities.intro.IntroActivity"
             android:exported="false"

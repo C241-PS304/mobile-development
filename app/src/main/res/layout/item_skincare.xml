@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/iv_bullet"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:src="@drawable/circle_full_24"
+        android:layout_marginTop="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_skincare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Skintific Ijo"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="11sp"
+        android:textColor="@color/black_subtitle"
+        android:layout_marginStart="2dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_bullet"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

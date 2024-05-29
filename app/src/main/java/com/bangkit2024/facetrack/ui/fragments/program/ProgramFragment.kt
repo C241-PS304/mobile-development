@@ -18,16 +18,26 @@ class ProgramFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val programViewModel =
-            ViewModelProvider(this)[ProgramViewModel::class.java]
-
         _binding = FragmentProgramBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val textView: TextView = binding.textProgram
-        programViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        /* # Button State
+        * If there are still active programs, hide add button and show error dialog
+        * else show add button and hide error message dialog
+        * */
+
+        // Example if there are still active program (temporary)
+        binding.btnShowError.setOnClickListener {
+            // Show error dialog
         }
-        return root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

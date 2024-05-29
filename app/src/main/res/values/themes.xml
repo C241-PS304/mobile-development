@@ -1,18 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.FaceTrack" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.FaceTrack" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
     <style name="Theme.FaceTrack" parent="Base.Theme.FaceTrack" />
 
-    <style name="Theme.FaceTrack.PurpleStatusBar" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Theme.FaceTrack.PurpleStatusBar" parent="Base.Theme.FaceTrack">
         <item name="android:statusBarColor">@color/primary_purple</item>
         <item name="android:navigationBarColor">@color/primary_purple</item>
     </style>
 
-    <style name="Theme.FaceTrack.WhiteStatusBar" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Theme.FaceTrack.WhiteStatusBar" parent="Base.Theme.FaceTrack">
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:navigationBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>

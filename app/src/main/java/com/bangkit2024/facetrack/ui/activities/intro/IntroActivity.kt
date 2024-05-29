@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit2024.facetrack.databinding.ActivityIntroBinding
 import com.bangkit2024.facetrack.ui.activities.login.LoginActivity
-import com.bangkit2024.facetrack.ui.activities.main.MainActivity
 
 class IntroActivity : AppCompatActivity() {
 
