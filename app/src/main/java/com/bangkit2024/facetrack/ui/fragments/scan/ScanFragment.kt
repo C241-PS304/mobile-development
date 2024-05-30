@@ -25,8 +25,9 @@ class ScanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         // Code here
+        binding.tvNoProgram.visibility = View.GONE
+        binding.btnBuatProgram.visibility = View.GONE
     }
 
     override fun onDestroyView() {

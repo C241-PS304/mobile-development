@@ -5,31 +5,43 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.inputprofile.InputProfileActivity">
+    tools:context=".ui.activities.addprogram.AddProgramActivity">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/add_program"
+        android:textAlignment="center"
+        android:textColor="@color/black_title"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nameEditTextLayout"
+        android:id="@+id/programEtLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:startIconDrawable="@drawable/ic_person_24">
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+        app:startIconDrawable="@drawable/ic_program_24">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_name"
+            android:id="@+id/et_program"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/name"
+            android:hint="@string/nama_program"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/phoneEditTextLayout"
+        android:id="@+id/produkEtLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -37,36 +49,14 @@
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nameEditTextLayout"
-        app:startIconDrawable="@drawable/ic_phone_24">
+        app:layout_constraintTop_toBottomOf="@+id/programEtLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_phone"
+            android:id="@+id/et_produk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/phone"
-            android:inputType="phone" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/genderEditTextLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/phoneEditTextLayout"
-        app:startIconDrawable="@drawable/ic_person_pin_24">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/gender"
+            android:hint="@string/nama_produk"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,9 +66,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:background="@drawable/custombutton"
-        android:text="@string/done"
+        android:text="@string/add_program"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genderEditTextLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/produkEtLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

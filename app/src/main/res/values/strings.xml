@@ -29,4 +29,17 @@
     <string name="done">Selesai</string>
     <string name="reset">Kirim</string>
     <string name="message_reset">Masukkan email kamu yang sudah terdaftar\nuntuk menerima kode verifikasi</string>
+    <string name="name_user">Muhammad Arif Faizin</string>
+    <string name="deteksi_terakhir">Deteksi Terakhir mu</string>
+    <string name="program_selesai">Wah ada program yang udah selesai</string>
+    <string name="artikel">Artikel yang mungkin kamu butuh</string>
+    <string name="ketentuan_scan">Baca Ketentuan Berikut :</string>
+    <string name="poin_ketentuan">1. Lepaskan kacamata anda sebelum memulai scan\n2. Pastikan rambut anda tidak menutup bagian muka anda\n3. Fokuskan kamera pada bagian masalah wajah anda</string>
+    <string name="buat_program">Buat Program</string>
+    <string name="no_program">Kamu belum ada program yang aktif nich</string>
+    <string name="nama_program">Nama Program</string>
+    <string name="nama_produk">Produk yang digunakan</string>
+    <string name="add_program">Tambah Program</string>
+    <string name="registrasi">Registrasi</string>
+    <string name="reset_password">Reset Password</string>
 </resources>

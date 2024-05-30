@@ -17,8 +17,6 @@ class InputProfileActivity : AppCompatActivity() {
         inputProfileBinding = ActivityInputProfileBinding.inflate(layoutInflater)
         setContentView(inputProfileBinding.root)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Lengkapi Profile"
         setupView()
         setupAction()
 
