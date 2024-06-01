@@ -1,10 +1,7 @@
-package com.bangkit2024.facetrack.adapter
+package com.bangkit2024.facetrack.ui.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit2024.facetrack.databinding.ItemArticleBinding
 import com.bangkit2024.facetrack.model.Article

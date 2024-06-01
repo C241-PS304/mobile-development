@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.reset.ResetActivity">
+    tools:context=".ui.activities.reset.ResetActivity"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/titleTextView"

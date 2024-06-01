@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit2024.facetrack.R
-import com.bangkit2024.facetrack.adapter.ArticleAdapter
+import com.bangkit2024.facetrack.ui.adapters.ArticleAdapter
 import com.bangkit2024.facetrack.databinding.FragmentHomeBinding
 import com.bangkit2024.facetrack.model.Article
 

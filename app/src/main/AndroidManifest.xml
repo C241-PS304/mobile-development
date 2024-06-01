@@ -10,8 +10,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FaceTrack"
+        android:theme="@style/Theme.FaceTrack.WhiteStatusBar"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.activities.detailProgram.DetailProgramActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activities.addprogram.AddProgramActivity"
             android:exported="false" />
