@@ -6,7 +6,9 @@
     <color name="black_title">#2C2C2C</color>
     <color name="black_subtitle">#6F6F6F</color>
     <color name="grey_bold">#E6E6E6</color>
-    <color name="grey_light">#DADADA</color>"
+    <color name="grey_light">#DADADA</color>
+    <color name="grey_text_super_bold">#6F6F6F</color>
+    <color name="grey_bg_light_bold">#C6C6C6</color>
     <color name="green_bold">#34A353</color>
     <color name="green_light">#3434A353</color>
     <color name="red">#E54335</color>
