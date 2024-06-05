@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="31 Juli 2024"
+                tools:text="31 Juli 2024"
                 android:textColor="@color/grey_light"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -56,8 +56,9 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:id="@+id/iv_arrow_down"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:src="@drawable/arrow_down_solid"
         android:layout_marginTop="8dp"
         android:layout_gravity="center" />

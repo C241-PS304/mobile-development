@@ -2,78 +2,108 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/reset"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.reset.ResetActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:padding="16dp"
+    tools:context=".ui.activities.reset.ResetActivity">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_back_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/tv_title_reset_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/reset_password"
         android:textAlignment="center"
         android:textColor="@color/black_title"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageview1"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:src="@drawable/ic_place_holder"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/forgot_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_reset_password" />
 
     <TextView
         android:id="@+id/resetTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/poppins_medium"
         android:text="@string/message_reset"
         android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageview1" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <com.bangkit2024.facetrack.ui.customview.CustomEmailInput
         android:id="@+id/emailEditTextLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="38dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resetTextView"
-        app:startIconDrawable="@drawable/ic_email_24">
+        app:startIconDrawable="@drawable/ic_email_24"
+        app:startIconTint="@color/black_subtitle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/poppins_medium"
             android:hint="@string/email"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/grey_bold"
+            android:textSize="12sp" />
+    </com.bangkit2024.facetrack.ui.customview.CustomEmailInput>
 
-    <Button
-        android:id="@+id/inputButton"
-        android:layout_width="350dp"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_kirim"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/custombutton"
+        android:layout_marginTop="38dp"
+        android:background="@drawable/bg_btn_primary_filled"
+        android:fontFamily="@font/poppins_bold"
         android:text="@string/reset"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/white"
+        android:maxWidth="35dp"
+        android:maxHeight="35dp"
+        android:minWidth="10dp"
+        android:minHeight="10dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/btn_kirim"
+        app:layout_constraintEnd_toEndOf="@id/btn_kirim"
+        app:layout_constraintStart_toStartOf="@id/btn_kirim"
+        app:layout_constraintTop_toTopOf="@id/btn_kirim"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

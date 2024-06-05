@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.bangkit2024.facetrack.R
 import com.bangkit2024.facetrack.databinding.FragmentDialogErrorProgramBinding
 
 class DialogErrorProgram : DialogFragment() {

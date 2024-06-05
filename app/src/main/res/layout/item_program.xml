@@ -24,7 +24,7 @@
             android:textSize="12sp"
             android:paddingHorizontal="12dp"
             android:paddingVertical="2dp"
-            android:background="@drawable/bg_process"
+            android:background="@drawable/bg_status_green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 

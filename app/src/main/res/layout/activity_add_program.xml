@@ -2,74 +2,119 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/add_program"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.activities.addprogram.AddProgramActivity">
+    android:padding="16dp"
+    tools:context=".ui.activities.addProgram.AddProgramActivity">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_back_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/add_program"
         android:textAlignment="center"
         android:textColor="@color/black_title"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/programEtLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-        app:startIconDrawable="@drawable/ic_program_24">
+        app:startIconDrawable="@drawable/ic_program_24"
+        app:startIconTint="@color/black_subtitle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_program"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/poppins_medium"
             android:hint="@string/nama_program"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColorHint="@color/grey_bold"
+            android:textSize="12sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/produkEtLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/programEtLayout">
+        app:layout_constraintTop_toBottomOf="@+id/programEtLayout"
+        app:startIconTint="@color/black_subtitle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_produk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/poppins_medium"
             android:hint="@string/nama_produk"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColorHint="@color/grey_bold"
+            android:textSize="12sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <TextView
+        android:id="@+id/tv_instruction_skincare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Gunakan koma (,) jika produk lebih dari 1"
+        android:textColor="@color/grey_text_super_bold"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/produkEtLayout" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/inputButton"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:background="@drawable/custombutton"
-        android:text="@string/add_program"
+        android:background="@drawable/bg_btn_primary_filled"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/tambah"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/produkEtLayout" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/white"
+        android:maxWidth="35dp"
+        android:maxHeight="35dp"
+        android:minWidth="10dp"
+        android:minHeight="10dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/inputButton"
+        app:layout_constraintEnd_toEndOf="@id/inputButton"
+        app:layout_constraintStart_toStartOf="@id/inputButton"
+        app:layout_constraintTop_toTopOf="@id/inputButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

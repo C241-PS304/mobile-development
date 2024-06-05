@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- If the button is enabled -->
+    <item
+        android:state_enabled="true"
+        android:color="@color/white">
+        <shape android:shape="rectangle">
+            <corners android:radius="8dp"/>
+            <solid android:color="@color/primary_purple" />
+        </shape>
+    </item>
+
+    <!-- If the button is disabled -->
+    <item
+        android:state_enabled="false"
+        android:color="@color/grey_text_super_bold">
+        <shape android:shape="rectangle">
+            <corners android:radius="8dp"/>
+            <solid android:color="@color/grey_bg_light_bold" />
+            <stroke
+                android:color="@color/grey_text_super_bold"
+                android:width="1dp" />
+        </shape>
+    </item>
+</selector>

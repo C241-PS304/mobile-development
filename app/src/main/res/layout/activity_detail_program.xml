@@ -2,20 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/detai_program"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.detailProgram.DetailProgramActivity"
     android:background="@color/white"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".ui.activities.detailProgram.DetailProgramActivity">
 
     <ImageView
         android:id="@+id/iv_back"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@drawable/ic_back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:src="@drawable/ic_back_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_title_program"
@@ -30,94 +30,120 @@
 
     <TextView
         android:id="@+id/tv_title_nama_program"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nama Program: "
-        android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/primary_purple"
         android:layout_marginTop="18dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_program"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Nama Program: "
+        android:textColor="@color/primary_purple"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_program" />
 
     <TextView
         android:id="@+id/tv_nama_program"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Jerawat please ilanglah:("
+        android:ellipsize="end"
         android:fontFamily="@font/poppins_regular"
+        android:maxLines="1"
         android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@id/tv_title_nama_program"
-        app:layout_constraintTop_toTopOf="@id/tv_title_nama_program"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_title_nama_program"
+        tools:text="Jerawat please ilanglah:(" />
 
     <TextView
         android:id="@+id/tv_title_produk"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Produk: "
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_semibold"
+        android:text="Produk: "
         android:textColor="@color/primary_purple"
-        android:layout_marginTop="6dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_nama_program"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_nama_program" />
 
     <TextView
         android:id="@+id/tv_produk"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Skintific Biru, Skintific Ijo"
+        android:ellipsize="end"
         android:fontFamily="@font/poppins_regular"
+        android:maxLines="1"
         android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@id/tv_title_produk"
-        app:layout_constraintTop_toTopOf="@id/tv_title_produk"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_title_produk"
+        tools:text="Skintific Biru, Skintific Ijo" />
 
     <TextView
         android:id="@+id/tv_title_tanggal"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tanggal Mulai: "
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_semibold"
+        android:text="Tanggal Mulai: "
         android:textColor="@color/primary_purple"
-        android:layout_marginTop="6dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_produk"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_produk" />
 
     <TextView
         android:id="@+id/tv_tanggal"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="25 Juli 2024"
         android:fontFamily="@font/poppins_regular"
         android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@id/tv_title_tanggal"
-        app:layout_constraintTop_toTopOf="@id/tv_title_tanggal"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_title_tanggal"
+        tools:text="25 Juli 2024" />
 
     <View
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/grey_light"
         android:layout_marginTop="26dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_tanggal"/>
-    
+        android:background="@color/grey_light"
+        app:layout_constraintTop_toBottomOf="@id/tv_tanggal" />
+
     <TextView
         android:id="@+id/tv_title_scans"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hasil Scan"
-        android:textSize="18sp"
-        android:textColor="@color/primary_purple"
-        android:fontFamily="@font/poppins_bold"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/line"/>
+        android:fontFamily="@font/poppins_bold"
+        android:text="Hasil Scan"
+        android:textColor="@color/primary_purple"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/line" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_scans"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_scans"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_scans"
+        android:padding="12dp"
         tools:itemCount="2"
-        tools:listitem="@layout/item_scan"/>
+        tools:listitem="@layout/item_scan" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_btn_done"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/selesai"
+        android:textColor="@drawable/bg_btn_done"
+        app:layout_constraintTop_toBottomOf="@id/rv_scans" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/primary_purple"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

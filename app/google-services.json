@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "24061485449",
+    "project_id": "skintrack-b4c40",
+    "storage_bucket": "skintrack-b4c40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24061485449:android:25ec02c4e5a6a533824158",
+        "android_client_info": {
+          "package_name": "com.bangkit2024.facetrack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKH1tVif1MGCQIrJChLuBVCauLUsNDh58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
