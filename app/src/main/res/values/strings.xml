@@ -43,4 +43,12 @@
     <string name="registrasi">Registrasi</string>
     <string name="reset_password">Reset Password</string>
     <string name="selesai">Selesai</string>
+    <string name="scan_result">Hasil Scan</string>
+    <string name="result">Hasil</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="loremipsum">Lorem Ipsum\nLorem Ipsum\nLorem Ipsum</string>
+    <string name="saran">Saran</string>
+    <string name="simpan">Simpan</string>
+    <string name="selamat">Selamat!!\nProgram mu telah Selasai</string>
+    <string name="backtohome">Kembali ke Home</string>
 </resources>

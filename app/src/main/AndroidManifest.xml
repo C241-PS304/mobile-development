@@ -19,6 +19,12 @@
         android:theme="@style/Theme.FaceTrack.WhiteStatusBar"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.result.ResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.scanResult.ScanResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.preview.PreviewActivity"
             android:exported="false" />
         <activity
@@ -28,13 +34,13 @@
             android:name=".ui.activities.detailProgram.DetailProgramActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.addprogram.AddProgramActivity"
+            android:name=".ui.activities.addProgram.AddProgramActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.reset.ResetActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.inputprofile.InputProfileActivity"
+            android:name=".ui.activities.inputProfile.InputProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.register.RegisterActivity"

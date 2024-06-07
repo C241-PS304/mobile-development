@@ -6,10 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
 import com.bangkit2024.facetrack.databinding.FragmentProgramBinding
-import com.bangkit2024.facetrack.ui.activities.addprogram.AddProgramActivity
+import com.bangkit2024.facetrack.ui.activities.addProgram.AddProgramActivity
 import com.bangkit2024.facetrack.ui.activities.detailProgram.DetailProgramActivity
 import com.bangkit2024.facetrack.ui.customview.DialogErrorProgram
 

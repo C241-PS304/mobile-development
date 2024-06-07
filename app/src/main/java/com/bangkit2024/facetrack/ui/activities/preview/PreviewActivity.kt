@@ -1,10 +1,12 @@
 package com.bangkit2024.facetrack.ui.activities.preview
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.bangkit2024.facetrack.R
 import com.bangkit2024.facetrack.databinding.ActivityPreviewBinding
+import com.bangkit2024.facetrack.ui.activities.scanResult.ScanResultActivity
 
 class PreviewActivity : AppCompatActivity() {
 
@@ -23,6 +25,9 @@ class PreviewActivity : AppCompatActivity() {
         val imageUri = imageFromScan?.toUri()
 
         bindingPreview.ivPreview.setImageURI(imageUri)
+        bindingPreview.btnDetect.setOnClickListener {
+            startActivity(Intent(this, ScanResultActivity::class.java))
+        }
     }
 
     companion object {

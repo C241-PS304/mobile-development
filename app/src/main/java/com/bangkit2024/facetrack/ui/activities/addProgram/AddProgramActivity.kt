@@ -1,4 +1,4 @@
-package com.bangkit2024.facetrack.ui.activities.addprogram
+package com.bangkit2024.facetrack.ui.activities.addProgram
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

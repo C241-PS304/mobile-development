@@ -20,7 +20,7 @@
                 android:text="@string/scan"
                 android:textAlignment="center"
                 android:textColor="@color/black_title"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -83,7 +83,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="88dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/custombutton"
+            android:background="@drawable/custombuttonpurple"
             android:text="@string/buat_program"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
