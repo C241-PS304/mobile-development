@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.bangkit2024.facetrack" />
+                  <option name="mobileSdkAppId" value="1:24061485449:android:25ec02c4e5a6a533824158" />
+                  <option name="projectId" value="skintrack-b4c40" />
+                  <option name="projectNumber" value="24061485449" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
