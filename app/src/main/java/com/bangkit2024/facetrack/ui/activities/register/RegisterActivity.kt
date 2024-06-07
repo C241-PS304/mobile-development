@@ -1,14 +1,11 @@
 package com.bangkit2024.facetrack.ui.activities.register
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.WindowInsets
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit2024.facetrack.databinding.ActivityRegisterBinding
-import com.bangkit2024.facetrack.ui.activities.inputprofile.InputProfileActivity
+import com.bangkit2024.facetrack.ui.activities.inputProfile.InputProfileActivity
 import com.bangkit2024.facetrack.ui.activities.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {

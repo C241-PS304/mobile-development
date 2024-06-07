@@ -1,4 +1,4 @@
-package com.bangkit2024.facetrack.ui.activities.inputprofile
+package com.bangkit2024.facetrack.ui.activities.inputProfile
 
 import android.content.Intent
 import android.os.Build
@@ -7,7 +7,6 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit2024.facetrack.databinding.ActivityInputProfileBinding
-import com.bangkit2024.facetrack.ui.activities.login.LoginActivity
 import com.bangkit2024.facetrack.ui.activities.main.MainActivity
 
 class InputProfileActivity : AppCompatActivity() {
