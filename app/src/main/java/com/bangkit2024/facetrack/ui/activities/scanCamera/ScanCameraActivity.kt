@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.OrientationEventListener
 import android.view.Surface
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.OnBackPressedDispatcher
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.OptIn
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
@@ -19,6 +19,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.bangkit2024.facetrack.databinding.ActivityScanCameraBinding
 import com.bangkit2024.facetrack.ui.activities.preview.PreviewActivity
+import com.bangkit2024.facetrack.utils.YoloTfliteDetector
 import com.bangkit2024.facetrack.utils.createCustomTempFile
 import com.bangkit2024.facetrack.utils.showToast
 
@@ -141,5 +142,4 @@ class ScanCameraActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "ScanCameraActivity"
     }
-
 }

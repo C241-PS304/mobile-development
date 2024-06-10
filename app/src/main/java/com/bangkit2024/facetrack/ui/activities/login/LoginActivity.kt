@@ -5,21 +5,39 @@ import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit2024.facetrack.databinding.ActivityLoginBinding
 import com.bangkit2024.facetrack.ui.activities.main.MainActivity
 import com.bangkit2024.facetrack.ui.activities.register.RegisterActivity
 import com.bangkit2024.facetrack.ui.activities.reset.ResetActivity
+import com.bangkit2024.facetrack.utils.showToast
 import kotlin.math.log
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var loginBinding: ActivityLoginBinding
 
+    private var pressedTime = 0L
+
+    private val backCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (pressedTime + 2000 > System.currentTimeMillis()) {
+                finish()
+            } else {
+                showToast(this@LoginActivity, "Tekan lagi untuk keluar")
+            }
+
+            pressedTime = System.currentTimeMillis()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loginBinding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(loginBinding.root)
+
+        onBackPressedDispatcher.addCallback(this, backCallback)
 
         setupView()
         setupAction()
