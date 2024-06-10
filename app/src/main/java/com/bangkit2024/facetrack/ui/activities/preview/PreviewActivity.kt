@@ -24,7 +24,11 @@ class PreviewActivity : AppCompatActivity() {
         val imageFromScan = intent.getStringExtra(EXTRA_CAMERAX_IMAGE)
         val imageUri = imageFromScan?.toUri()
 
-        bindingPreview.ivPreview.setImageURI(imageUri)
+        if (imageUri != null) {
+            bindingPreview.ivPreview.setImageURI(imageUri)
+            bindingPreview.ivPreview.scaleX = -1f
+        }
+
         bindingPreview.btnDetect.setOnClickListener {
             startActivity(Intent(this, ScanResultActivity::class.java))
         }
