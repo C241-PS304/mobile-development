@@ -73,7 +73,10 @@ dependencies {
     implementation(libs.camera.view)
 
     // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
-    implementation("com.google.firebase:firebase-analytics")
+    implementation(platform(libs.google.firebase.bom))
+    implementation(libs.firebase.analytics)
+
+    // Splash Screen API
+    implementation(libs.androidx.core.splashscreen)
 
 }
