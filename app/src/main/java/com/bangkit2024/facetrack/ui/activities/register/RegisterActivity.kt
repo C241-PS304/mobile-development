@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.bangkit2024.facetrack.databinding.ActivityRegisterBinding
 import com.bangkit2024.facetrack.ui.activities.inputProfile.InputProfileActivity
 import com.bangkit2024.facetrack.ui.activities.login.LoginActivity
-import com.bangkit2024.facetrack.ui.activities.main.MainActivity
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var registerBinding: ActivityRegisterBinding
