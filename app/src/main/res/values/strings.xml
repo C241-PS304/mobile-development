@@ -51,4 +51,10 @@
     <string name="simpan">Simpan</string>
     <string name="selamat">Selamat!!\nProgram mu telah Selasai</string>
     <string name="backtohome">Kembali ke Home</string>
+    <string name="title_intro_1">Selamat Datang di SkinTrack!</string>
+    <string name="subtitle_intro_1">Aplikasi yang mempermudah dalam tracking masalah wajahmu dengan bantuan AI!</string>
+    <string name="title_intro_2">Scan, Simpan, Sempurnakan</string>
+    <string name="subtitle_intro_2">Hanya 3 langkah mudah untuk mengetahui perjalanan perawatan kulit wajah anda</string>
+    <string name="title_intro_3">Bergabung menjadi SkinTrackers</string>
+    <string name="subtitle_intro_3">Siap untuk mencapai kulit wajah yang sehat yang selalu anda inginkan?</string>
 </resources>

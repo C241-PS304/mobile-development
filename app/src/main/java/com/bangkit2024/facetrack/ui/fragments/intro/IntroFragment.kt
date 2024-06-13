@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bangkit2024.facetrack.R
 import com.bangkit2024.facetrack.databinding.FragmentIntroBinding
+import com.bumptech.glide.Glide
 
 class IntroFragment : Fragment() {
 
@@ -36,19 +37,34 @@ class IntroFragment : Fragment() {
 
         when(param) {
             "1" -> {
-                setUpData(R.drawable.ic_launcher_background, "Intro 1", "Lorem ipsum dolor sit amet consectetur. Pellentesque eu integer")
+                setUpData(
+                    R.drawable.intro_1,
+                    getString(R.string.title_intro_1),
+                    getString(R.string.subtitle_intro_1)
+                )
             }
             "2" -> {
-                setUpData(R.drawable.ic_launcher_background, "Intro 2", "Lorem ipsum dolor sit amet consectetur. Pellentesque eu integer")
+                setUpData(
+                    R.drawable.intro_2,
+                    getString(R.string.title_intro_2),
+                    getString(R.string.subtitle_intro_2)
+                )
             }
             "3" -> {
-                setUpData(R.drawable.ic_launcher_background, "Intro 3", "Lorem ipsum dolor sit amet consectetur. Pellentesque eu integer")
+                setUpData(
+                    R.drawable.intro_3,
+                    getString(R.string.title_intro_3),
+                    getString(R.string.subtitle_intro_3)
+                )
             }
         }
     }
 
     private fun setUpData(resId: Int, txtTitle: String, txtSubtitle: String) {
-        binding.ivIntro.setBackgroundResource(resId)
+        Glide.with(requireActivity())
+            .load(resId)
+            .fitCenter()
+            .into(binding.ivIntro)
         binding.tvTitleIntro.text = txtTitle
         binding.tvSubtitleIntro.text = txtSubtitle
     }

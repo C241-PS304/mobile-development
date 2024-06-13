@@ -12,6 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import com.bangkit2024.facetrack.R
 import com.bangkit2024.facetrack.databinding.ActivitySplashBinding
 import com.bangkit2024.facetrack.ui.activities.intro.IntroActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -24,6 +27,11 @@ class SplashActivity : AppCompatActivity() {
         installSplashScreen()
         splashBinding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(splashBinding.root)
+
+        Glide.with(this)
+            .load(R.raw.skin_track)
+            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+            .into(splashBinding.ivLogo)
 
         // This is temporary solution before implement API and Store token
         lifecycleScope.launch {
