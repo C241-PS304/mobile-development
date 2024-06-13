@@ -136,7 +136,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:background="@drawable/custombuttonpurple"
+        android:background="@drawable/bg_btn_primary_filled"
         android:text="@string/register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

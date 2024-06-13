@@ -11,9 +11,9 @@ class ViewModelFactory private constructor(
 ) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
-            return RegisterViewModel(authRepository)::class.java as T
-        }
+//        if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
+//            return RegisterViewModel(authRepository) as T
+//        }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
 

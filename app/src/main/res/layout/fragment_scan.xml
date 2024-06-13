@@ -4,24 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.scan.ScanFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".ui.fragments.scan.ScanFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-            <TextView
-                android:id="@+id/tv_title_scan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/scan"
-                android:textAlignment="center"
-                android:textColor="@color/black_title"
-                android:textSize="16sp"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tv_title_scan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/scan"
+            android:textAlignment="center"
+            android:textColor="@color/black_title"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_scan"
@@ -83,7 +83,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="88dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/custombuttonpurple"
+            android:background="@drawable/bg_btn_primary_filled"
             android:text="@string/buat_program"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

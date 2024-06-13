@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Default Color -->
+    <item android:state_pressed="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/primary_purple" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+
+    <!-- When pressed -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/primary_purple_pressed" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+
+</selector>
