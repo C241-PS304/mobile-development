@@ -3,30 +3,42 @@ package com.bangkit2024.facetrack.ui.activities.register
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.bangkit2024.facetrack.data.repository.AuthRepository
-import kotlinx.coroutines.launch
-import com.bangkit2024.facetrack.utils.Result
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
-class RegisterViewModel(
-    private val authRepository: AuthRepository
-) : ViewModel() {
+class RegisterViewModel: ViewModel()  {
 
-    private val _registerState = MutableLiveData<Result<String?>>()
-    val registerState: LiveData<Result<String?>> get() = _registerState
+    private val firebaseUserMutableLiveData: MutableLiveData<FirebaseUser?> = MutableLiveData()
+    private val auth = FirebaseAuth.getInstance()
 
-//    fun register(
-//        email: String,
-//        password: String
-//    ) = viewModelScope.launch {
-//        _registerState.value = Result.Loading
-//
-//        try {
-//            val response = authRepository.register(email, password)
-//            val messageSucess = response.
-//
-//        } catch (e: Exception) {
-//
-//        }
-//    }
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _successText = MutableLiveData<String?>()
+    val successText: LiveData<String?> = _successText
+
+    private val _failureText = MutableLiveData<String?>()
+    val failureText: LiveData<String?> = _failureText
+    fun setSuccessMessage(message: String?) {
+        _successText.value = message
+    }
+    fun setFailureMessage(message: String?) {
+        _failureText.value = message
+    }
+    init {
+        if (auth.currentUser != null) {
+            firebaseUserMutableLiveData.postValue(auth.currentUser)
+        }
+    }
+
+    fun registerFirebase(email: String?, pass: String?) {
+        auth.createUserWithEmailAndPassword(email!!, pass!!).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                firebaseUserMutableLiveData.postValue(auth.currentUser)
+                setSuccessMessage("Registrasi Berhasil")
+            } else {
+                setFailureMessage("Email Sudah Terdaftar")
+            }
+        }
+    }
 }
