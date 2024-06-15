@@ -42,7 +42,6 @@ class PreviewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         bindingPreview = ActivityPreviewBinding.inflate(layoutInflater)
         setContentView(bindingPreview.root)
 

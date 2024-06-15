@@ -61,7 +61,7 @@ dependencies {
     implementation(libs.tensorflow.lite.support)
     implementation(libs.tensorflow.lite.metadata)
     implementation(libs.tensorflow.lite.gpu)
-    implementation (libs.firebase.auth)
+    implementation(libs.datastore.preferences)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -82,6 +82,7 @@ dependencies {
     // Firebase
     implementation(platform(libs.google.firebase.bom))
     implementation(libs.firebase.analytics)
+    implementation (libs.firebase.auth)
 
     // Splash Screen API
     implementation(libs.androidx.core.splashscreen)

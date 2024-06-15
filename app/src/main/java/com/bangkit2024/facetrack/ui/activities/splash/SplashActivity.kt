@@ -3,11 +3,8 @@ package com.bangkit2024.facetrack.ui.activities.splash
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.bangkit2024.facetrack.R
 import com.bangkit2024.facetrack.databinding.ActivitySplashBinding

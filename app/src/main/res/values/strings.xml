@@ -57,4 +57,8 @@
     <string name="subtitle_intro_2">Hanya 3 langkah mudah untuk mengetahui perjalanan perawatan kulit wajah anda</string>
     <string name="title_intro_3">Bergabung menjadi SkinTrackers</string>
     <string name="subtitle_intro_3">Siap untuk mencapai kulit wajah yang sehat yang selalu anda inginkan?</string>
+    <string name="datapribadi">Data Pribadi</string>
+    <string name="ttl">TTL</string>
+    <string name="none">-</string>
+    <string name="logout">Logout</string>
 </resources>
