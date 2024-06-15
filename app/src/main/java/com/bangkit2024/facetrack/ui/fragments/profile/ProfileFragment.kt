@@ -5,13 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit2024.facetrack.databinding.FragmentProfileBinding
 import com.bangkit2024.facetrack.ui.activities.editProfile.EditProfileActivity
-import com.bangkit2024.facetrack.ui.activities.inputProfile.InputProfileActivity
 import com.bangkit2024.facetrack.ui.activities.login.LoginActivity
 
 class ProfileFragment : Fragment() {

@@ -1,7 +1,6 @@
 package com.bangkit2024.facetrack.ui.activities.preview
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -16,14 +15,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.exifinterface.media.ExifInterface
 import androidx.lifecycle.lifecycleScope
-import com.bangkit2024.facetrack.R
 import com.bangkit2024.facetrack.databinding.ActivityPreviewBinding
-import com.bangkit2024.facetrack.ui.activities.scanResult.ScanResultActivity
 import com.bangkit2024.facetrack.utils.Recognition
 import com.bangkit2024.facetrack.utils.YoloTfliteDetector
 import com.bangkit2024.facetrack.utils.showToast
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import kotlinx.coroutines.launch
 import java.io.IOException
