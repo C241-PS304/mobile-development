@@ -35,6 +35,7 @@ class SplashActivity : AppCompatActivity() {
             Glide.with(this@SplashActivity)
                 .load(R.drawable.logo_skintrack)
                 .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                .centerCrop()
                 .into(splashBinding.ivLogo)
 
             delay(1500)

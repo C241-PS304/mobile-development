@@ -19,8 +19,6 @@ class HomeViewModel(
     private val _stateHome = MutableLiveData<Result<CurrentUserData?>>()
     val stateHome: LiveData<Result<CurrentUserData?>> = _stateHome
 
-
-
     private val _token = MutableLiveData<String>()
     val token : LiveData<String>
         get() = _token

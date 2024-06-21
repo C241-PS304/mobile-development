@@ -1,5 +1,6 @@
 package com.bangkit2024.facetrack.ui.activities.editProfile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -9,6 +10,7 @@ import com.bangkit2024.facetrack.R
 import com.bangkit2024.facetrack.data.remote.request.UserProfileBody
 import com.bangkit2024.facetrack.databinding.ActivityEditProfileBinding
 import com.bangkit2024.facetrack.ui.ViewModelFactory
+import com.bangkit2024.facetrack.ui.activities.main.MainActivity
 import com.bangkit2024.facetrack.utils.Result
 import com.bangkit2024.facetrack.utils.hideKeyboard
 import com.bangkit2024.facetrack.utils.showToast
@@ -92,6 +94,7 @@ class EditProfileActivity : AppCompatActivity() {
                     }
                     is Result.Success -> {
                         showLoading(false)
+                        startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     }
                     is Result.Error -> {

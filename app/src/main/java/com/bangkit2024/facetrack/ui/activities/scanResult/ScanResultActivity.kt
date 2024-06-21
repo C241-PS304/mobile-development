@@ -1,5 +1,6 @@
 package com.bangkit2024.facetrack.ui.activities.scanResult
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.net.Uri
@@ -9,20 +10,27 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.exifinterface.media.ExifInterface
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit2024.facetrack.databinding.ActivityScanResultBinding
 import com.bangkit2024.facetrack.model.Disease
 import com.bangkit2024.facetrack.ui.ViewModelFactory
+import com.bangkit2024.facetrack.ui.activities.detailProgram.DetailProgramActivity
 import com.bangkit2024.facetrack.ui.adapters.DeskripsiScanResultAdapter
 import com.bangkit2024.facetrack.ui.adapters.DiseaseAdapter
+import com.bangkit2024.facetrack.ui.adapters.ProblemAdapter
 import com.bangkit2024.facetrack.ui.adapters.SaranScanResultAdapter
+import com.bangkit2024.facetrack.utils.ImageUtils.loadBitmapWithOrientation
 import com.bangkit2024.facetrack.utils.ImageUtils.uriToFile
+import com.bangkit2024.facetrack.utils.Result
+import com.bangkit2024.facetrack.utils.showToast
 import com.bumptech.glide.Glide
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
 import java.io.InputStream
 import java.text.SimpleDateFormat
@@ -36,72 +44,137 @@ class ScanResultActivity : AppCompatActivity() {
     private val viewModel by viewModels<ScanResultViewModel> {
         ViewModelFactory.getInstance(this)
     }
-    private var idProgramActive :Int? = 0
+    private var idProgramActive: Int? = 0
     private var imageUri: Uri? = null
     private lateinit var bitmap: Bitmap
     private lateinit var deskripsiScanResultAdapter: DeskripsiScanResultAdapter
     private lateinit var saranScanResultAdapter: SaranScanResultAdapter
     private lateinit var diseaseAdapter: DiseaseAdapter
 
+    private var userToken: String? = null
+    private var listproblems: ArrayList<Int>? = null
+    private var image: String? = null
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         scanResultBinding = ActivityScanResultBinding.inflate(layoutInflater)
         setContentView(scanResultBinding.root)
 
-        val image = intent.getStringExtra("image")
-        val listproblems = intent.getIntegerArrayListExtra("listidProblem")
+        scanResultBinding.ivBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        if (intent != null) {
+            listproblems = intent.getIntegerArrayListExtra("listidProblem")
+            image = intent.getStringExtra("image")
+        }
         scanResultBinding.tvTanggalMulai.text = getCurrentDateFormatted()
+//
+        Log.d("ScanResult", listproblems.toString())
 
         imageUri = Uri.parse(image)
         if (imageUri != null) {
-            bitmap = loadBitmapWithOrientation(imageUri)
+            val bitmap = loadBitmapWithOrientation(this, imageUri)
             Glide.with(this)
                 .load(bitmap)
                 .into(scanResultBinding.ivHasilScan)
         }
 
-        if (listproblems != null) {
-            viewModel.getProblem(listproblems.toIntArray())
+        viewModel.token.observe(this) { token ->
+            userToken = token
+
+            if (listproblems != null) {
+                viewModel.getProblem(userToken.toString(), listproblems!!.toIntArray())
+            }
+
+            viewModel.idProgram.observe(this) { id ->
+                idProgramActive = id.toString().toInt()
+                viewModel.getDetailProgram(
+                    userToken.toString(),
+                    idProgramActive!!
+                )
+            }
         }
 
         viewModel.isLoading.observe(this) {
             showLoading(it)
         }
 
-        viewModel.problembyId.observe(this){ it ->
+        viewModel.problembyId.observe(this) { it ->
             it.let {
-                for (i in it){
-                    val disease = listOf(i?.nama.toString())
-                    val countMap = countOccurrences(listproblems!!.toTypedArray())
-                    val uniqueDisease = countMap.keys.toList().joinToString(",")
-                    val countNumbers = countMap.values.toList().joinToString(",")
-                    val diseaseCountList = countMap.entries.mapIndexed { index, entry ->
-                        Disease(disease[index % disease.size], entry.value)
-                    }
-                    Log.e("ScanResultActivity", "$imageUri")
-                    imageUri?.let { uri ->
-                        val imageFile = uriToFile(uri, this)
-                        val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
-                        val multipartBody = MultipartBody.Part.createFormData(
-                            "photo",
-                            imageFile.name,
-                            requestImageFile
+                val diseaseCountList: List<Disease>
+                val disease = mutableListOf<String>()
+                for (i in it) {
+                    disease.add(i?.nama.toString())
+                }
+                val countMap = countOccurrences(listproblems!!.toTypedArray())
+                val uniqueDisease = countMap.keys.toList().joinToString(",")
+                val countNumbers = countMap.values.toList().joinToString(",")
+                diseaseCountList = countMap.entries.mapIndexed { index, entry ->
+                    Disease(disease[index % disease.size], entry.value)
+                }
+                Log.d("ScanResultActivity", "Disease: $disease")
+                Log.d("ScanResultActivity", "Countmap: $countMap")
+                Log.d("ScanResultActivity", "$diseaseCountList")
+                Log.e("ScanResultActivity", "$imageUri")
+                imageUri?.let { uri ->
+                    val imageFile = uriToFile(uri, this)
+                    val requestImageFile = imageFile.asRequestBody("image/png".toMediaType())
+                    val multipartBody = MultipartBody.Part.createFormData(
+                        "file",
+                        imageFile.name,
+                        requestImageFile
+                    )
+
+                    val requestIdProgram = idProgramActive.toString().toRequestBody("text/plain".toMediaType())
+                    val requestIdProblem = uniqueDisease.toRequestBody("text/plain".toMediaType())
+                    val requestCountNumbers = countNumbers.toRequestBody("text/plain".toMediaType())
+
+                    Log.e("Multipart", "$multipartBody")
+                    Log.e("IdProgram", "$idProgramActive")
+                    Log.e("UniqueDisease", uniqueDisease)
+                    Log.e("CountNumbers", countNumbers)
+
+                    scanResultBinding.btnSave.setOnClickListener {
+                        viewModel.addScan(
+                            userToken.toString(),
+                            multipartBody,
+                            requestIdProgram,
+                            requestIdProblem,
+                            requestCountNumbers
                         )
+                        viewModel.stateScanResult.observe(this) { result ->
+                            when (result) {
+                                is Result.Loading -> {
+                                    showLoading(true)
+                                }
 
-                        Log.e("Multipart", "$multipartBody")
-                        Log.e("IdProgram", "$idProgramActive")
-                        Log.e("UniqueDisease", uniqueDisease)
-                        Log.e("CountNumbers", countNumbers)
+                                is Result.Success -> {
+                                    showLoading(false)
+                                    val intentToDetailProgram =
+                                        Intent(this, DetailProgramActivity::class.java)
+                                        intentToDetailProgram.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                                        intentToDetailProgram.putExtra(DetailProgramActivity.EXTRA_ID_PROGRAM, idProgramActive
+                                    )
+                                    startActivity(intentToDetailProgram)
+                                    finish()
+                                }
 
-                        scanResultBinding.btnSave.setOnClickListener {
-                            viewModel.addScan(multipartBody, idProgramActive!!, uniqueDisease, countNumbers)
+                                is Result.Error -> {
+                                    showLoading(false)
+                                    showToast(this, result.error)
+                                }
+                            }
                         }
                     }
-
-                    scanResultBinding.rvProblems.layoutManager = LinearLayoutManager(this)
-                    diseaseAdapter = DiseaseAdapter(diseaseCountList)
-                    scanResultBinding.rvProblems.adapter = diseaseAdapter
                 }
+
+
+                scanResultBinding.rvProblems.layoutManager = LinearLayoutManager(this)
+                diseaseAdapter = DiseaseAdapter(diseaseCountList)
+                scanResultBinding.rvProblems.adapter = diseaseAdapter
+
                 scanResultBinding.rvDeskripsi.layoutManager = LinearLayoutManager(this)
                 deskripsiScanResultAdapter = DeskripsiScanResultAdapter(it)
                 scanResultBinding.rvDeskripsi.adapter = deskripsiScanResultAdapter
@@ -111,49 +184,28 @@ class ScanResultActivity : AppCompatActivity() {
                 scanResultBinding.rvSaran.adapter = saranScanResultAdapter
             }
         }
-        viewModel.idProgram.observe(this){ id ->
-            idProgramActive = id.toString().toInt()
-            viewModel.getDetailProgram(idProgramActive!!)
-        }
-        viewModel.detailprogram.observe(this){ program ->
-            if (program != null){
-                program.data!!.let {
-                    if (it.scan!!.isNotEmpty()){
-                        scanResultBinding.cardviewbefore.visibility = View.VISIBLE
-                        scanResultBinding.tvCompare.visibility = View.VISIBLE
-                    }
+
+        viewModel.detailprogram.observe(this) { program ->
+            if (program != null) {
+                val lastScan = program.data?.scan?.last()
+                if (lastScan != null) {
+                    scanResultBinding.cardviewbefore.visibility = View.VISIBLE
+                    scanResultBinding.tvCompare.visibility = View.VISIBLE
+
+                    Glide.with(this)
+                        .load(lastScan.gambar)
+                        .into(scanResultBinding.ivHasilScanBefore)
+
+                    scanResultBinding.rvProblemsBefore.layoutManager = LinearLayoutManager(this)
+                    val diseaseBeforeAdapter = ProblemAdapter()
+                    diseaseBeforeAdapter.submitList(lastScan.numberOfProblems)
+                    scanResultBinding.rvProblemsBefore.adapter = diseaseBeforeAdapter
+                } else {
+                    scanResultBinding.cardviewbefore.visibility = View.GONE
+                    scanResultBinding.tvCompare.visibility = View.GONE
                 }
             }
         }
-    }
-
-    private fun loadBitmapWithOrientation(imageUri: Uri?): Bitmap {
-        val originalBitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
-        val inputStream: InputStream? = imageUri?.let { contentResolver.openInputStream(it) }
-        var orientation = ExifInterface.ORIENTATION_UNDEFINED
-
-        if (inputStream != null) {
-            try {
-                val exifInterface = ExifInterface(inputStream)
-                orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                inputStream.close()
-            }
-        }
-        return rotateBitmap(originalBitmap, orientation)
-    }
-
-    private fun rotateBitmap(bitmap: Bitmap, orientation: Int): Bitmap {
-        val matrix = Matrix()
-        when (orientation) {
-            ExifInterface.ORIENTATION_ROTATE_90 -> matrix.postRotate(90f)
-            ExifInterface.ORIENTATION_ROTATE_180 -> matrix.postRotate(180f)
-            ExifInterface.ORIENTATION_ROTATE_270 -> matrix.postRotate(270f)
-        }
-
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 
     private fun countOccurrences(array: Array<Int>): Map<Int, Int> {
@@ -164,7 +216,7 @@ class ScanResultActivity : AppCompatActivity() {
         return countMap
     }
 
-    fun getCurrentDateFormatted(): String {
+    private fun getCurrentDateFormatted(): String {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val current = LocalDate.now()
             val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.getDefault())

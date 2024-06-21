@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.ViewTreeObserver
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -14,6 +15,7 @@ import com.bangkit2024.facetrack.data.remote.response.ScanItem
 import com.bangkit2024.facetrack.data.remote.response.SkincareItemProgram
 import com.bangkit2024.facetrack.databinding.ActivityDetailProgramBinding
 import com.bangkit2024.facetrack.ui.ViewModelFactory
+import com.bangkit2024.facetrack.ui.activities.main.MainActivity
 import com.bangkit2024.facetrack.ui.activities.result.ResultActivity
 import com.bangkit2024.facetrack.ui.adapters.ScanAdapter
 import com.bangkit2024.facetrack.utils.Result
@@ -38,6 +40,11 @@ class DetailProgramActivity : AppCompatActivity() {
 
         if (intent != null) {
             idProgram = intent.getIntExtra(EXTRA_ID_PROGRAM, 0)
+        }
+
+        binding.ivBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+            finish()
         }
 
         setupAction()
@@ -82,6 +89,9 @@ class DetailProgramActivity : AppCompatActivity() {
                         if (result.data?.isActive == false) {
                             binding.btnDone.visibility = View.GONE
                         }
+                        if (result.data?.scan?.isEmpty() == true) {
+                            binding.btnDone.isEnabled = false
+                        }
                         setupDataProgram(result.data)
                         setupDataScan(result.data?.scan)
                     }
@@ -98,7 +108,15 @@ class DetailProgramActivity : AppCompatActivity() {
         val adapter = ScanAdapter()
         adapter.submitList(data)
         binding.rvScans.adapter = adapter
-
+        binding.rvScans.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                binding.rvScans.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                val itemHeight = binding.rvScans.getChildAt(0)?.height ?: 0
+                val recyclerViewHeight = itemHeight * 3
+                binding.rvScans.layoutParams.height = recyclerViewHeight
+                binding.rvScans.requestLayout()
+            }
+        })
         adapter.setOnItemClickCallback(object : ScanAdapter.OnItemClickCallback {
             override fun onClick(data: ScanItem) {
                 val intentToResult = Intent(this@DetailProgramActivity, ResultActivity::class.java)
@@ -153,7 +171,11 @@ class DetailProgramActivity : AppCompatActivity() {
                 detailProgramViewModel.stateFinishProgram.observe(this@DetailProgramActivity) { result ->
                     when(result) {
                         is Result.Loading -> {}
-                        is Result.Success -> { finish() }
+                        is Result.Success -> {
+                            val intentToMain = Intent(this@DetailProgramActivity, MainActivity::class.java)
+                            intentToMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intentToMain)
+                            finish()}
                         is Result.Error -> { showToast(this@DetailProgramActivity, result.error) }
                     }
                 }

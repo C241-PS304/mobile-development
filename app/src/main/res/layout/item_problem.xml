@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:paddingStart="50dp"
     android:paddingEnd="50dp"
@@ -15,7 +16,7 @@
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/primary_purple"
         android:textAlignment="viewStart"
-        android:text="Jerawat"/>
+        tools:text="Jerawat"/>
 
     <TextView
         android:id="@+id/tv_jumlah_problem"
@@ -23,7 +24,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="viewEnd"
         android:fontFamily="@font/poppins_bold"
-        android:text="3"/>
+        tools:text="3"/>
 
 
 </LinearLayout>

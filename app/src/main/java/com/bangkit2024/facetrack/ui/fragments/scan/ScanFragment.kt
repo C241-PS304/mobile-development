@@ -14,6 +14,7 @@ import com.bangkit2024.facetrack.databinding.FragmentScanBinding
 import com.bangkit2024.facetrack.ui.ViewModelFactory
 import com.bangkit2024.facetrack.ui.activities.addProgram.AddProgramActivity
 import com.bangkit2024.facetrack.ui.activities.scanCamera.ScanCameraActivity
+import com.bangkit2024.facetrack.utils.Result
 import com.bangkit2024.facetrack.utils.showToast
 
 class ScanFragment : Fragment() {
@@ -23,6 +24,9 @@ class ScanFragment : Fragment() {
     private val viewModel by viewModels<ScanViewModel> {
         ViewModelFactory.getInstance(requireContext())
     }
+
+    private var userToken: String? = null
+
     private val requestPermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
@@ -50,25 +54,43 @@ class ScanFragment : Fragment() {
             showLoading(isLoading)
         }
 
-        viewModel.checkAvailProgram()
-        viewModel.saveIdProgramActive()
+        viewModel.token.observe(viewLifecycleOwner) { token ->
+            userToken = token.toString()
+
+            viewModel.checkAvailProgram(token)
+            viewModel.saveIdProgramActive(token)
+        }
 
         binding.apply {
-            viewModel.program.observe(viewLifecycleOwner){ program ->
-                if (program.status != true){
-                    tvNoProgram.visibility = View.GONE
-                    btnBuatProgram.visibility = View.GONE
-                    btnScan.visibility = View.VISIBLE
-                    tvKetentuan.visibility = View.VISIBLE
-                    tvPoinKetentuan.visibility = View.VISIBLE
-                    ivScan.visibility = View.VISIBLE
-                }else{
-                    tvNoProgram.visibility = View.VISIBLE
-                    btnBuatProgram.visibility = View.VISIBLE
-                    btnScan.visibility = View.GONE
-                    tvKetentuan.visibility = View.GONE
-                    tvPoinKetentuan.visibility = View.GONE
-                    ivScan.visibility = View.GONE
+            viewModel.stateCheckAvailProgram.observe(viewLifecycleOwner) { result ->
+                if (result != null) {
+                    when (result) {
+                        is Result.Loading -> {
+                            showLoading(true)
+                        }
+                        is Result.Success -> {
+                            showLoading(false)
+                            if (result.data == true) {
+                                tvNoProgram.visibility = View.VISIBLE
+                                btnBuatProgram.visibility = View.VISIBLE
+                                btnScan.visibility = View.GONE
+                                tvKetentuan.visibility = View.GONE
+                                tvPoinKetentuan.visibility = View.GONE
+                                ivScan.visibility = View.GONE
+                            } else {
+                                tvNoProgram.visibility = View.GONE
+                                btnBuatProgram.visibility = View.GONE
+                                btnScan.visibility = View.VISIBLE
+                                tvKetentuan.visibility = View.VISIBLE
+                                tvPoinKetentuan.visibility = View.VISIBLE
+                                ivScan.visibility = View.VISIBLE
+                            }
+                        }
+                        is Result.Error -> {
+                            showLoading(false)
+//                            showToast(requireActivity(), result.error)
+                        }
+                    }
                 }
             }
 
@@ -101,9 +123,66 @@ class ScanFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.apply {
+            if (isLoading) {
+                ivScan.visibility = View.GONE
+                btnScan.visibility = View.GONE
+                tvKetentuan.visibility = View.GONE
+                tvPoinKetentuan.visibility = View.GONE
+                progressBar.visibility = View.VISIBLE
+            } else {
+                ivScan.visibility = View.VISIBLE
+                btnScan.visibility = View.VISIBLE
+                tvKetentuan.visibility = View.VISIBLE
+                tvPoinKetentuan.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+            }
+        }
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.token.observe(viewLifecycleOwner) { token ->
+            userToken = token.toString()
+            viewModel.checkAvailProgram(token)
+            viewModel.saveIdProgramActive(token)
+        }
+        binding.apply {
+            viewModel.stateCheckAvailProgram.observe(viewLifecycleOwner) { result ->
+                if (result != null) {
+                    when (result) {
+                        is Result.Loading -> {
+                            showLoading(true)
+                        }
+
+                        is Result.Success -> {
+                            showLoading(false)
+                            if (result.data == true) {
+                                tvNoProgram.visibility = View.VISIBLE
+                                btnBuatProgram.visibility = View.VISIBLE
+                                btnScan.visibility = View.GONE
+                                tvKetentuan.visibility = View.GONE
+                                tvPoinKetentuan.visibility = View.GONE
+                                ivScan.visibility = View.GONE
+                            } else {
+                                tvNoProgram.visibility = View.GONE
+                                btnBuatProgram.visibility = View.GONE
+                                btnScan.visibility = View.VISIBLE
+                                tvKetentuan.visibility = View.VISIBLE
+                                tvPoinKetentuan.visibility = View.VISIBLE
+                                ivScan.visibility = View.VISIBLE
+                            }
+                        }
+
+                        is Result.Error -> {
+                            showLoading(false)
+//                            showToast(requireActivity(), result.error)
+                        }
+                    }
+                }
+            }
+        }
+    }
     companion object {
         private const val CAMERAX_PERMISSION = android.Manifest.permission.CAMERA
     }

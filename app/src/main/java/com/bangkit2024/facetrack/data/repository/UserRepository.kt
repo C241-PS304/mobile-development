@@ -6,6 +6,7 @@ import com.bangkit2024.facetrack.data.remote.request.UserProfileBody
 import com.bangkit2024.facetrack.data.remote.retrofit.ApiService
 import kotlinx.coroutines.flow.first
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class UserRepository private constructor(
     private val apiService: ApiService,
@@ -40,7 +41,13 @@ class UserRepository private constructor(
         apiService.getDetailProgram(token, id)
 
     //     Add new scan
-    suspend fun addScan(token: String, multipartBody: MultipartBody.Part, programId: Int, problemId: String, jumlah: String) =
+    suspend fun addScan(
+        token: String,
+        multipartBody: MultipartBody.Part,
+        programId: RequestBody,
+        problemId: RequestBody,
+        jumlah: RequestBody
+    ) =
          apiService.addScan(token, multipartBody, programId, problemId, jumlah)
 
 

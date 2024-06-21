@@ -9,6 +9,7 @@ import com.bangkit2024.facetrack.di.Injection
 import com.bangkit2024.facetrack.ui.activities.addProgram.AddProgramViewModel
 import com.bangkit2024.facetrack.ui.activities.detailProgram.DetailProgramViewModel
 import com.bangkit2024.facetrack.ui.activities.editProfile.EditProfileViewModel
+import com.bangkit2024.facetrack.ui.activities.inputProfile.InputProfileViewModel
 import com.bangkit2024.facetrack.ui.activities.login.LoginViewModel
 import com.bangkit2024.facetrack.ui.activities.newPassword.NewPasswordViewModel
 import com.bangkit2024.facetrack.ui.activities.register.RegisterViewModel
@@ -69,8 +70,11 @@ class ViewModelFactory private constructor(
             modelClass.isAssignableFrom(ScanViewModel::class.java) -> {
                 return ScanViewModel(authRepository, userRepository) as T
             }
-            modelClass.isAssignableFrom(ScanResultActivity::class.java) -> {
+            modelClass.isAssignableFrom(ScanResultViewModel::class.java) -> {
                 return ScanResultViewModel(authRepository, userRepository) as T
+            }
+            modelClass.isAssignableFrom(InputProfileViewModel::class.java) -> {
+                return InputProfileViewModel(userRepository) as T
             }
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

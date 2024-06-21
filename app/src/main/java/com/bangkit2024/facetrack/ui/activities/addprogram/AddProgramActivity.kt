@@ -1,5 +1,6 @@
 package com.bangkit2024.facetrack.ui.activities.addProgram
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -9,6 +10,7 @@ import com.bangkit2024.facetrack.data.remote.request.NewProgramBody
 import com.bangkit2024.facetrack.databinding.ActivityAddProgramBinding
 import com.bangkit2024.facetrack.model.Skincare
 import com.bangkit2024.facetrack.ui.ViewModelFactory
+import com.bangkit2024.facetrack.ui.activities.main.MainActivity
 import com.bangkit2024.facetrack.utils.Result
 import com.bangkit2024.facetrack.utils.hideKeyboard
 import com.bangkit2024.facetrack.utils.showToast
@@ -26,6 +28,10 @@ class AddProgramActivity : AppCompatActivity() {
 
         addProgramBinding = ActivityAddProgramBinding.inflate(layoutInflater)
         setContentView(addProgramBinding.root)
+
+        addProgramBinding.ivBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         initViewModel()
         setupAction()
@@ -81,6 +87,7 @@ class AddProgramActivity : AppCompatActivity() {
                     }
                     is Result.Success -> {
                         showLoading(false)
+                        startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     }
                     is Result.Error -> {

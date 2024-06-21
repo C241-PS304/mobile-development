@@ -1,6 +1,7 @@
 package com.bangkit2024.facetrack.ui.activities.preview
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -11,11 +12,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.exifinterface.media.ExifInterface
 import androidx.lifecycle.lifecycleScope
 import com.bangkit2024.facetrack.databinding.ActivityPreviewBinding
+import com.bangkit2024.facetrack.ui.activities.scanResult.ScanResultActivity
 import com.bangkit2024.facetrack.utils.Recognition
 import com.bangkit2024.facetrack.utils.YoloTfliteDetector
 import com.bangkit2024.facetrack.utils.showToast
@@ -29,12 +32,12 @@ class PreviewActivity : AppCompatActivity() {
 
     private lateinit var bindingPreview: ActivityPreviewBinding
     private lateinit var yoloTfliteDetector: YoloTfliteDetector
-
     private lateinit var bitmap: Bitmap
     private lateinit var strokePaint: Paint
     private lateinit var boxPaint: Paint
     private lateinit var textPaint: Paint
     private var imageUri: Uri? = null
+    private var listidProblem: ArrayList<Int> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +48,24 @@ class PreviewActivity : AppCompatActivity() {
         setupReceiveIntent()
         setUpBoundingBox()
 
+        bindingPreview.btnHasil.visibility = View.GONE
         bindingPreview.btnDetect.setOnClickListener {
             lifecycleScope.launch {
                 val recognitions = yoloTfliteDetector.detect(bitmap)
                 Log.d(TAG, recognitions.toString())
                 processDetectionResults(recognitions)
-
-                bindingPreview.btnDetect.isEnabled = false
+                bindingPreview.btnDetect.visibility = View.GONE
+                bindingPreview.btnHasil.visibility = View.VISIBLE
             }
+        }
+
+        bindingPreview.btnHasil.setOnClickListener {
+            val image = intent.getStringExtra(EXTRA_CAMERAX_IMAGE).toString()
+            val intent = Intent(this, ScanResultActivity::class.java)
+            intent.putExtra("image", image)
+            intent.putExtra("listidProblem", listidProblem)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -73,7 +86,7 @@ class PreviewActivity : AppCompatActivity() {
 
     private fun setupYoloTfliteDetector() {
         yoloTfliteDetector = YoloTfliteDetector()
-        yoloTfliteDetector.modelFile = "skin_track.tflite"
+        yoloTfliteDetector.modelFile = "model_skin_track.tflite"
         yoloTfliteDetector.initialModel(this)
     }
 
@@ -93,13 +106,28 @@ class PreviewActivity : AppCompatActivity() {
                     width - location.left,
                     location.bottom
                 )
+                listidProblem.add(recognition.labelId+1)
+
                 chooseBoundingBox(recognition.labelId)
                 canvas.drawRect(flippedLocation, boxPaint)
                 canvas.drawRect(flippedLocation, strokePaint)
 
-                val textX = width - location.right
-                val textY = location.top
-                canvas.drawText("${recognition.labelName}:${String.format("%.2f", recognition.confidence)}", textX, textY, textPaint)
+                canvas.save()
+                // Apply the transformation to flip the text back
+                canvas.scale(-1f, 1f, flippedLocation.left, flippedLocation.top)
+
+                // Calculate the position for the text
+                val textX = -flippedLocation.right
+                val textY = flippedLocation.top
+                canvas.drawText(
+                    "${recognition.labelName}:${
+                        String.format(
+                            "%.2f",
+                            recognition.confidence
+                        )
+                    }", textX, textY, textPaint
+                )
+                canvas.restore()
             }
         }
 
@@ -120,7 +148,10 @@ class PreviewActivity : AppCompatActivity() {
         if (inputStream != null) {
             try {
                 val exifInterface = ExifInterface(inputStream)
-                orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)
+                orientation = exifInterface.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_UNDEFINED
+                )
             } catch (e: IOException) {
                 e.printStackTrace()
             } finally {
@@ -162,26 +193,31 @@ class PreviewActivity : AppCompatActivity() {
                 boxPaint.color = Color.argb(50, 0, 0, 255)
                 textPaint.color = Color.BLUE
             }
+
             1 -> {
                 strokePaint.color = Color.GREEN
                 boxPaint.color = Color.argb(50, 0, 255, 0)
                 textPaint.color = Color.GREEN
             }
+
             2 -> {
                 strokePaint.color = Color.RED
                 boxPaint.color = Color.argb(50, 255, 0, 0)
                 textPaint.color = Color.RED
             }
+
             3 -> {
                 strokePaint.color = Color.RED
                 boxPaint.color = Color.argb(50, 255, 0, 0)
                 textPaint.color = Color.RED
             }
+
             4 -> {
                 strokePaint.color = Color.RED
                 boxPaint.color = Color.argb(50, 255, 0, 0)
                 textPaint.color = Color.RED
             }
+
             5 -> {
                 strokePaint.color = Color.RED
                 boxPaint.color = Color.argb(50, 255, 0, 0)

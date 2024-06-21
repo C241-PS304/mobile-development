@@ -19,12 +19,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Selesai"
-            android:textColor="@color/green_bold"
+            tools:textColor="@color/green_bold"
             android:fontFamily="@font/poppins_bold"
             android:textSize="12sp"
             android:paddingHorizontal="12dp"
             android:paddingVertical="2dp"
-            android:background="@drawable/bg_status_green"
+            tools:background="@drawable/bg_status_green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 

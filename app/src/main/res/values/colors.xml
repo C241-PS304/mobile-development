@@ -15,6 +15,6 @@
     <color name="green_bold">#34A353</color>
     <color name="green_light">#3434A353</color>
     <color name="red">#E54335</color>
-    <color name="yellow_text">#FF5722</color>
-    <color name="yellow_bg">#FF9800</color>
+    <color name="yellow_text">#FDAE23</color>
+    <color name="yellow_bg">#FFECCC</color>
 </resources>

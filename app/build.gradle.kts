@@ -21,7 +21,7 @@ android {
         buildConfigField(
             "String",
             "BASE_URL",
-            "\"https://rhgf97j2-8080.asse.devtunnels.ms/api/v1/\""
+            "\"https://skin-track-api-jq6ugeqaxq-as.a.run.app/api/v1/\""
         )
     }
 
@@ -91,6 +91,5 @@ dependencies {
     // ViewPager2 and Indicator
     implementation(libs.androidx.viewpager2)
     implementation(libs.dotsindicator)
-    implementation(kotlin("script-runtime"))
 
 }

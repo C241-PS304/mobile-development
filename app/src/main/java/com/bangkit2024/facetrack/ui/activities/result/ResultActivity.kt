@@ -10,6 +10,7 @@ import com.bangkit2024.facetrack.databinding.ActivityResultBinding
 import com.bangkit2024.facetrack.ui.adapters.DeskripsiAdapter
 import com.bangkit2024.facetrack.ui.adapters.ProblemAdapter
 import com.bangkit2024.facetrack.ui.adapters.SaranAdapter
+import com.bumptech.glide.Glide
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var resultBinding: ActivityResultBinding
@@ -29,9 +30,17 @@ class ResultActivity : AppCompatActivity() {
                 intent.getParcelableExtra(EXTRA_PROBLEMS, ScanItem::class.java)
             } else {
                 @Suppress("DEPRECATION")
-                intent.getParcelableExtra<ScanItem>(EXTRA_PROBLEMS)
+                intent.getParcelableExtra(EXTRA_PROBLEMS)
             }
         }
+
+        resultBinding.ivBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        Glide.with(this)
+            .load(image)
+            .into(resultBinding.ivHasilScan)
 
         val listProblem = dataDetailProgram?.numberOfProblems
         setupRecyclerView()

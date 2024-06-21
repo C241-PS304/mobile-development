@@ -35,8 +35,8 @@ import java.util.PriorityQueue;
 
 public class YoloTfliteDetector {
 
-    private final Size INPNUT_SIZE = new Size(800, 800);
-    private final int[] OUTPUT_SIZE = new int[]{1, 13125, 10};
+    private final Size INPNUT_SIZE = new Size(1024, 1024);
+    private final int[] OUTPUT_SIZE = new int[]{1, 21504, 7};
     private final float DETECT_THRESHOLD = 0.25f;
 
     private final String LABEL_FILE = "label_skin_problem.txt";

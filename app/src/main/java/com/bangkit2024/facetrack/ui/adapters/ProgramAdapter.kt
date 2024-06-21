@@ -2,6 +2,7 @@ package com.bangkit2024.facetrack.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit2024.facetrack.R
@@ -31,8 +32,13 @@ class ProgramAdapter : ListAdapter<DataItemProgram, ProgramAdapter.ListViewHolde
             with(binding) {
                 tvTitleProgram.text = data.namaProgram
                 tvStatus.text = statusToText(data.isActive)
-                tvStatus.setTextColor(statusToColor(data.isActive))
+                tvStatus.setTextColor(setupColorText(data.isActive))
                 tvStatus.setBackgroundResource(statusToColor(data.isActive))
+
+                val skincareAdapter = SkincareAdapter()
+                skincareAdapter.submitList(data.skincare)
+                rvSkincares.layoutManager = LinearLayoutManager(itemView.context)
+                rvSkincares.adapter = skincareAdapter
 
                 itemView.setOnClickListener {
                     onItemClickCallback?.onClick(data)
@@ -43,6 +49,9 @@ class ProgramAdapter : ListAdapter<DataItemProgram, ProgramAdapter.ListViewHolde
         private fun statusToText(isActive: Boolean?): String {
             return if (isActive == true) "Aktif" else "Selesai"
         }
+
+        private fun setupColorText(isActive: Boolean?) =
+            if (isActive == true) R.color.yellow_text else R.color.green_bold
 
         private fun statusToColor(isActive: Boolean?): Int {
             return if (isActive == true) {

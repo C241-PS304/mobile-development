@@ -21,6 +21,7 @@ import com.bangkit2024.facetrack.data.remote.response.RegisterResponse
 import com.bangkit2024.facetrack.data.remote.response.ScanResponse
 import com.bangkit2024.facetrack.data.remote.response.UpdateRegisterResponse
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -114,9 +115,9 @@ interface ApiService {
     suspend fun addScan(
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part,
-        @Part("programId") programId: Int,
-        @Part("problemId") problemId: String,
-        @Part("jumlah") jumlah: String
+        @Part("programId") programId: RequestBody,
+        @Part("problemId") problemId: RequestBody,
+        @Part("jumlah") jumlah: RequestBody
     ) : ScanResponse
 
     // ====================== PROBLEM =========================

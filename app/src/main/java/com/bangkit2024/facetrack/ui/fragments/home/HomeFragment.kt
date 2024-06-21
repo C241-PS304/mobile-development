@@ -1,11 +1,14 @@
 package com.bangkit2024.facetrack.ui.fragments.home
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,11 +16,14 @@ import com.bangkit2024.facetrack.R
 import com.bangkit2024.facetrack.data.remote.response.CurrentUserData
 import com.bangkit2024.facetrack.databinding.FragmentHomeBinding
 import com.bangkit2024.facetrack.ui.ViewModelFactory
+import com.bangkit2024.facetrack.ui.activities.detailProgram.DetailProgramActivity
 import com.bangkit2024.facetrack.ui.activities.editProfile.EditProfileActivity
+import com.bangkit2024.facetrack.ui.activities.result.ResultActivity
 import com.bangkit2024.facetrack.utils.Result
 import com.bangkit2024.facetrack.utils.showToast
 import com.bumptech.glide.Glide
 
+@RequiresApi(Build.VERSION_CODES.O)
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -134,12 +140,14 @@ class HomeFragment : Fragment() {
                 tv1.visibility = View.GONE
                 tv2.visibility = View.GONE
                 cvLastScan.visibility = View.GONE
+                tvNothingLastScan.visibility = View.GONE
                 progressBar.visibility = View.VISIBLE
             } else {
                 tv1.visibility = View.VISIBLE
                 tv2.visibility = View.VISIBLE
                 cvLastScan.visibility = View.VISIBLE
                 progressBar.visibility = View.GONE
+                tvNothingLastScan.visibility = View.VISIBLE
             }
         }
     }
@@ -149,30 +157,30 @@ class HomeFragment : Fragment() {
         val lastScan = activeProgram?.scan?.lastOrNull()
 
         if (activeProgram != null && lastScan != null) {
+            binding.cvLastScan.visibility = View.VISIBLE
+            binding.tvNothingLastScan.visibility = View.GONE
+
             Glide.with(requireActivity())
                 .load(lastScan.gambar)
                 .centerCrop()
                 .into(binding.ivLastScan)
 
             binding.tvProgramLastScan.text = activeProgram.namaProgram
-
-            val listProblem =
-                lastScan.numberOfProblems?.joinToString(", ") {
-                    idProblemToNameProblem(it?.problemNumberId ?: 0)
-                }
-            binding.tvProblemLastScan.text = listProblem ?: "No problems found"
+            binding.cvLastScan.setOnClickListener {
+                val intentToDetailScan = Intent(requireActivity(), DetailProgramActivity::class.java)
+                intentToDetailScan.putExtra(DetailProgramActivity.EXTRA_ID_PROGRAM, activeProgram.programId)
+                startActivity(intentToDetailScan)
+            }
+        } else {
+            binding.cvLastScan.visibility = View.GONE
+            binding.tvNothingLastScan.visibility = View.VISIBLE
         }
     }
 
-    private fun idProblemToNameProblem(number: Int): String {
-        return when(number) {
-            1 -> "Jerawat"
-            2 -> "Mata Panda"
-            3 -> "Kerutan"
-            else -> ""
-        }
+    override fun onResume() {
+        super.onResume()
+        initViewModel()
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

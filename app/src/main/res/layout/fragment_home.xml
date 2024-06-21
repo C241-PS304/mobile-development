@@ -138,23 +138,18 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Jerawat pleaseeeeee" />
 
-            <TextView
-                android:id="@+id/tv_problem_last_scan"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="6dp"
-                android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/black_title"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/iv_last_scan"
-                app:layout_constraintTop_toBottomOf="@id/tv_program_last_scan"
-                tools:text="Jerawat" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_nothing_last_scan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:text="Sepertinya belum ada scan akhir-akhir ini."
+        android:fontFamily="@font/poppins_medium"
+        app:layout_constraintTop_toBottomOf="@id/tv2"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
